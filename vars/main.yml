@@ -1,0 +1,19 @@
+---
+#
+# Celery role: vars/main.yml
+#
+
+celery:
+
+  apt_pkgs:
+    - python
+    - python-dev
+    - python-pip
+    - supervisor
+
+  pip_pkgs:
+    - celery
+
+  owner: "{{celery_owner|default('www-data')}}"
+  group: "{{celery_group|default('www-data')}}"
+

@@ -1,0 +1,34 @@
+---
+#
+# Celery role: supervisor configuration
+#
+
+- name: Supervisor configuration directories
+  file:
+    state=directory
+    dest="{{item}}"
+    owner='root'
+    group='root'
+    mode='0755'
+  with_items:
+    - /etc/supervisor
+    - /etc/supervisor/conf.d
+
+- name: Supervisor configuration
+  template:
+    src=etc/supervisor/supervisord.conf.j2
+    dest=/etc/supervisor/supervisord.conf
+    owner='root'
+    group='root'
+    mode='0644'
+  notify: supervisor restart
+
+- name: Celery Supervisor configuration
+  template:
+    src=etc/supervisor/conf.d/celery.conf.j2
+    dest=/etc/supervisor/conf.d/celery.conf
+    owner='root'
+    group="{{celery.group}}"
+    mode='0640'
+  notify: supervisor restart
+

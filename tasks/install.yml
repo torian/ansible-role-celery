@@ -1,0 +1,17 @@
+---
+#
+# Install celery and deps
+#
+
+- name: Package dependencies
+  apt:
+    name={{item}}
+    state=present
+  with_items: celery.apt_pkgs
+
+- name: Install Celery
+  pip:
+    name=celery
+    version="{{celery_version}}"
+
+# vi:ts=2:sw=2:et:ft=yaml

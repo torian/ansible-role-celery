@@ -1,0 +1,37 @@
+---
+#
+#
+#
+
+- include: install.yml
+  tags: celery_install
+
+- name: Check application directory path 
+  fail:
+    msg="You need to specify a project path"
+  when: celery_appdir is not defined or celery_appdir == ''
+
+- name: Check application name
+  fail:
+    msg="You need to specify a project name"
+  when: celery_app is not defined or celery_app == ''
+
+- include: supervisor.yml
+  tags: celery_supervisor
+
+- include: user.yml
+  tags: celery_config
+
+- include: config.yml
+  tags: celery_config
+
+- include: logrotate.yml
+  tags: celery_config
+
+- name: Enable Supervisor
+  service:
+    name=supervisor
+    enabled=yes
+    state=started
+
+# vi:ts=2:sw=2:et:ft=yaml

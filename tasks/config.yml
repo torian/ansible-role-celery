@@ -1,0 +1,22 @@
+---
+#
+# Celery role
+#
+
+- name: Create log directory
+  file:
+    state=directory
+    dest="{{celery_logdir}}"
+    owner="{{celery.owner}}"
+    group="{{celery.group}}"
+    mode='0755'
+
+- name: Create run directory
+  file:
+    state=directory
+    dest="{{celery_piddir}}"
+    owner="{{celery.owner}}"
+    group="{{celery.group}}"
+    mode='0755'
+
+# vi:ts=2:sw=2:et:ft=yaml

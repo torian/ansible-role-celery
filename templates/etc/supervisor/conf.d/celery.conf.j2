@@ -2,7 +2,7 @@
 
 [program:celery]
 directory    = {{celery_appdir}}
-command      = {{celery_bin}} worker -A {{celery_app}} --loglevel={{celery_loglevel}}
+command      = {{celery_command}}
 process_name = %(program_name)s_%(process_num)s
 user         = {{celery.owner}}
 numprocs     = {{celery_procs}}

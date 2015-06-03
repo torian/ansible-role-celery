@@ -38,6 +38,9 @@ celery_logdir:   /var/log/celery
 celery_piddir:   /var/run/celery
 celery_loglevel: info
 
+# Command to be executed from supervisor
+celery_command: "{{celery_bin}} worker -A {{celery_app}} --loglevel={{celery_loglevel}}"
+
 # Enable logrotate configuration
 celery_logrotate: True
 celery_logrotate_conf: |

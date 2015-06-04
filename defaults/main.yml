@@ -51,4 +51,20 @@ celery_logrotate_conf: |
   rotate 30
   copytruncate
 
+# Supervisor commands
+#  It's a dict that represents commands that will be monitored by supervisor,
+#  which in turn, contains a dict of parameters that will configure the program
+#  to be run.
+#  You should define this in a vars / group_vars file 
+#
+#supervisor_services:
+#  celery:
+#    command:        some_command
+#    directory:      /app/prefix
+#    process_name:   program_name
+#    num_procs:      2
+#    autostart:      true
+#    stdout_logfile: /some/place.log
+#    stderr_logfile: /some/err_place.log
+
 # vi:ts=2:sw=2:et:ft=yaml

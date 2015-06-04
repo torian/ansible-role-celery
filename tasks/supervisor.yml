@@ -26,9 +26,10 @@
 - name: Celery Supervisor configuration
   template:
     src=etc/supervisor/conf.d/celery.conf.j2
-    dest=/etc/supervisor/conf.d/celery.conf
-    owner='root'
+    dest=/etc/supervisor/conf.d/{{item.key}}.conf
+    owner="root"
     group="{{celery.group}}"
-    mode='0640'
+    mode="0640"
+  with_dict: supervisor_services
   notify: supervisor restart
 

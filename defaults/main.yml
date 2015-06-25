@@ -7,17 +7,9 @@
 # Celery version
 celery_version: 3.1.9
 
-# Add OS user
-#  If you want the OS user to be created, set this to true
-celery_adduser: True
-
 # Celery owner
-#  The user that will run the service (defaults to www-data)
+#  The user that will run the service
 #celery_owner: celery
-
-# Celery group
-#  (defaults to www-data)
-#celery_group: celery
 
 # Celery processes
 #  Number of processes to spawn
@@ -37,9 +29,6 @@ celery_opts: '--time-limit=300 --concurrency=2'
 celery_logdir:   /var/log/celery
 celery_piddir:   /var/run/celery
 celery_loglevel: info
-
-# Command to be executed from supervisor
-celery_command: "{{celery_bin}} worker -A {{celery_app}} --loglevel={{celery_loglevel}}"
 
 # Enable logrotate configuration
 celery_logrotate: True

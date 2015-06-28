@@ -1,15 +1,16 @@
 ---
 #
 # Celery role
-#   Defaults for configuration values
 #
+
+celery_apt_pkgs:
+  - python
+  - python-dev
+  - python-pip
+  - supervisor
 
 # Celery version
 celery_version: 3.1.9
-
-# Celery owner
-#  The user that will run the service
-#celery_owner: celery
 
 # Celery processes
 #  Number of processes to spawn

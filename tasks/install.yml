@@ -5,9 +5,11 @@
 
 - name: Package dependencies
   apt:
-    name={{item}}
     state=present
-  with_items: celery.apt_pkgs
+    name="{{item}}"
+    update_cache=yes
+    cache_valid_time=3600
+  with_items: celery_apt_pkgs
 
 - name: Install Celery
   pip:

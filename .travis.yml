@@ -7,9 +7,18 @@ before_install:
 
 install:
   - pip install ansible
-  - "printf '[defaults]\nroles_path = ../' > ansible.cfg"
 
 script:
-  - ansible-playbook test/test.yml -i test/inventory --syntax-check 
-  - ansible-playbook test/test.yml -i test/inventory --connection=local --sudo -vvv
+  # Test functionality with default values
+  - ansible-playbook tests/test_defaults.yml -i localhost, --syntax-check 
+  - ansible-playbook tests/test_defaults.yml -i localhost, --connection=local --sudo
 
+  # Test celery task along with supervisor
+  - ansible-playbook tests/test_supervisor.yml -i localhost, --syntax-check 
+  - ansible-playbook tests/test_supervisor.yml -i localhost, --connection=local --sudo
+
+  # Test celery task along with supervisor
+  - ansible-playbook tests/test_flower.yml -i localhost, --syntax-check 
+  - ansible-playbook tests/test_flower.yml -i localhost, --connection=local --sudo
+
+# vi:ts=2:sw=2:et:ft=yaml

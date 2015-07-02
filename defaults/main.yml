@@ -1,15 +1,19 @@
 ---
 #
 # Celery role
-#   Defaults for configuration values
 #
 
-# Celery version
-celery_version: 3.1.9
+celery_user:  nobody
+celery_group: nogroup
 
-# Celery owner
-#  The user that will run the service
-#celery_owner: celery
+celery_apt_pkgs:
+  - python
+  - python-dev
+  - python-pip
+  - supervisor
+
+# Celery version
+celery_version: 3.1.18
 
 # Celery processes
 #  Number of processes to spawn
@@ -22,9 +26,6 @@ celery_nodes: worker
 # Celery script
 #  If installed from pip, /usr/local/bin/celery
 celery_bin: /usr/local/bin/celery
-
-# Celery options
-celery_opts: '--time-limit=300 --concurrency=2'
 
 celery_logdir:   /var/log/celery
 celery_piddir:   /var/run/celery
@@ -39,6 +40,20 @@ celery_logrotate_conf: |
   missingok
   rotate 30
   copytruncate
+
+# Install Flower, a celery monitoring app
+celery_flower_enabled: true
+celery_flower_version: 0.8.0
+celery_flower_port:    5555
+#celery_flower_service:
+#  flower:
+#    directory:      /app/prefix
+#    command:        celery flower
+#    process_name:   flower
+#    autostart:      true
+#    num_procs:      1
+celery_flower_service: {}
+  
 
 # Supervisor commands
 #  It's a dict that represents commands that will be monitored by supervisor,
@@ -55,5 +70,7 @@ celery_logrotate_conf: |
 #    autostart:      true
 #    stdout_logfile: /some/place.log
 #    stderr_logfile: /some/err_place.log
+
+supervisor_services: { }
 
 # vi:ts=2:sw=2:et:ft=yaml

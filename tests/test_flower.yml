@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  remote_user: root
+
+  tasks:
+    - name: Install Broker
+      apt:
+        state=present
+        name=redis-server
+        
+  roles:
+    - {
+        role: ansible-role-celery,
+        supervisor_services: {
+          celery: {
+            command: "celery -A tasks worker --loglevel=debug -f /tmp/celery_worker.log",
+            directory: tests/celery_task,
+            process_name: celery_test,
+            num_procs: 1,
+            user: "{{celery_user}}"
+          }
+        },
+        celery_flower_installed: True,
+        celery_flower_service: {
+          celery: {
+            command: "celery -A tasks --loglevel=debug -f /tmp/celery_flower.log flower --broker=redis://localhost",
+            directory: tests/celery_task,
+            process_name: celery_flower,
+            num_procs: 1,
+            user: "{{celery_user}}"
+          }
+        }
+      }
+
+# vi:ts=2:sw=2:et:ft=yaml

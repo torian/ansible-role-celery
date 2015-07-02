@@ -17,4 +17,8 @@ script:
   - ansible-playbook tests/test_supervisor.yml -i localhost, --syntax-check 
   - ansible-playbook tests/test_supervisor.yml -i localhost, --connection=local --sudo
 
+  # Test celery task along with supervisor
+  - ansible-playbook tests/test_flower.yml -i localhost, --syntax-check 
+  - ansible-playbook tests/test_flower.yml -i localhost, --connection=local --sudo
+
 # vi:ts=2:sw=2:et:ft=yaml

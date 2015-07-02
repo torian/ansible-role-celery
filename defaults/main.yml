@@ -41,6 +41,20 @@ celery_logrotate_conf: |
   rotate 30
   copytruncate
 
+# Install Flower, a celery monitoring app
+celery_flower_enabled: true
+celery_flower_version: 0.8.0
+celery_flower_port:    5555
+#celery_flower_service:
+#  flower:
+#    directory:      /app/prefix
+#    command:        celery flower
+#    process_name:   flower
+#    autostart:      true
+#    num_procs:      1
+celery_flower_service: {}
+  
+
 # Supervisor commands
 #  It's a dict that represents commands that will be monitored by supervisor,
 #  which in turn, contains a dict of parameters that will configure the program

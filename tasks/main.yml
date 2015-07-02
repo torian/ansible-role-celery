@@ -19,6 +19,10 @@
 - include: logrotate.yml
   tags: celery_config
 
+- include: flower.yml
+  when: celery_flower_enabled
+  tags: celery_flower
+
 - name: Enable Supervisor
   service:
     name=supervisor

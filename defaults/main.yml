@@ -13,7 +13,7 @@ celery_apt_pkgs:
   - supervisor
 
 # Celery version
-celery_version: 3.1.9
+celery_version: 3.1.18
 
 # Celery processes
 #  Number of processes to spawn
@@ -26,9 +26,6 @@ celery_nodes: worker
 # Celery script
 #  If installed from pip, /usr/local/bin/celery
 celery_bin: /usr/local/bin/celery
-
-# Celery options
-celery_opts: '--time-limit=300 --concurrency=2'
 
 celery_logdir:   /var/log/celery
 celery_piddir:   /var/run/celery

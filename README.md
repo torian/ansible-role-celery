@@ -6,6 +6,10 @@ a web based monitoring dashboard for celery clusters.
 
 In order to daemonize Celery and/or Flower, `supervisor` is used.
 
+## Tested On
+
+  * Ubuntu 14.04
+
 ## Defaults
 
 The `defaults/main.yml` should be pretty clear on the usage and values. The 
@@ -75,4 +79,5 @@ Running Flower is very similar:
 ## TODO
 
   * Extract supervisor to it's own role
+  * Extend to other distros
 

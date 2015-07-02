@@ -3,6 +3,9 @@
 # Celery role
 #
 
+celery_user:  nobody
+celery_group: nogroup
+
 celery_apt_pkgs:
   - python
   - python-dev
@@ -56,5 +59,7 @@ celery_logrotate_conf: |
 #    autostart:      true
 #    stdout_logfile: /some/place.log
 #    stderr_logfile: /some/err_place.log
+
+supervisor_services: { }
 
 # vi:ts=2:sw=2:et:ft=yaml

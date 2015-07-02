@@ -23,6 +23,5 @@
   service:
     name=supervisor
     enabled=yes
-    state=started
 
 # vi:ts=2:sw=2:et:ft=yaml

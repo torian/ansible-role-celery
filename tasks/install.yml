@@ -8,7 +8,7 @@
     state=present
     name="{{item}}"
     update_cache=yes
-    cache_valid_timeout=3600
+    cache_valid_time=3600
   with_items: celery_apt_pkgs
 
 - name: Install Celery

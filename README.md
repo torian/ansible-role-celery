@@ -1,5 +1,7 @@
 # Ansible role for Celery
 
+[![Build Status](https://travis-ci.org/torian/ansible-role-celery.svg)](https://travis-ci.org/torian/ansible-role-celery)
+
 This role will install [celery](http://www.celeryproject.org/), a distributed
 task queue. You can also install [Flower](http://flower.readthedocs.org/en/latest/),
 a web based monitoring dashboard for celery clusters.

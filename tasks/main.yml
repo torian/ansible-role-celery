@@ -2,19 +2,8 @@
 
 # Check for required vars
 
-- name: Check supervisor_services var
-  fail: 
-    msg="You need to specify supervisor_services dict var"
-  when: supervisor_services is not defined
-
 - include: install.yml
   tags: celery_install
-
-- include: supervisor.yml
-  tags: celery_supervisor
-
-- include: config.yml
-  tags: celery_config
 
 - include: logrotate.yml
   tags: celery_config
@@ -22,10 +11,5 @@
 - include: flower.yml
   when: celery_flower_enabled
   tags: celery_flower
-
-- name: Enable Supervisor
-  service:
-    name=supervisor
-    enabled=yes
 
 # vi:ts=2:sw=2:et:ft=yaml

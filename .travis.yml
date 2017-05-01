@@ -10,6 +10,7 @@ before_install:
 
 install:
   - pip install ansible==2.3.0.0
+  - mkdir -p ./roles
   - ansible-galaxy install -r ./requirements.yml -r ./roles
 
 script:

@@ -1,15 +1,22 @@
 ---
 
-# Check for required vars
+- name: Package dependencies
+  package:
+    state: present
+    name: "{{item}}"
+  with_items: "{{celery_pkg_deps}}"
 
-- include: install.yml
-  tags: celery_install
+- name: Install Celery
+  pip:
+    name: celery
+    version: "{{celery_version|default('')}}"
 
-- include: logrotate.yml
-  tags: celery_config
-
-- include: flower.yml
-  when: celery_flower_enabled
-  tags: celery_flower
+- name: Install Flower
+  pip:
+    name: flower
+    version: "{{celery_flower_version|default(omit)}}"
+  when: 
+    - celery_flower_enabled is defined
+    - celery_flower_enabled
 
 # vi:ts=2:sw=2:et:ft=yaml

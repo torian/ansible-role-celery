@@ -3,15 +3,12 @@
   remote_user: root
 
   vars:
-    - supervisor_services: {
-        celery: {
-          command: "celery -A tasks worker --loglevel=debug -f /tmp/celery_worker.log",
-          directory: tests/celery_task,
-          process_name: celery_test,
-          num_procs: 1,
-          user: "{{celery_user}}"
-        }
-      }
+    - supervisor_services:
+        celery:
+          command: "celery -A tasks worker --loglevel=debug -f /tmp/celery_worker.log"
+          directory: tests/celery_task
+          process_name: celery_test
+          num_procs: 1
 
   roles:
     - { role: supervisor }
